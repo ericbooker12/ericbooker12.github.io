@@ -1,0 +1,94 @@
+<html>
+<head>
+ <link rel = "stylesheet" type = "text/css" href = "styles.css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+	let accessToken = "5c9e98f90043aa508f8fae6d4b45bd06707abb6a";
+	let deviceID = "280031000147373336323230";
+
+	function toggleLED(color){
+		let element = document.getElementById(color);
+
+		if (element.classList.contains('off')) {
+			element.classList.add('on');
+			element.classList.remove('off');
+			$.post(getURL(color), {params: "on", access_token: accessToken });
+		} else if (element.classList.contains('on')) {
+			element.classList.remove('on');
+			element.classList.add('off');
+			$.post(getURL(color), {params: "off", access_token: accessToken });
+		}
+	}
+
+	function switchOff(color){
+		let element = document.getElementById(color);
+		element.classList.add('off');
+		element.classList.remove('on');
+		$.post(getURL(color), {params: "off", access_token: accessToken });
+	}
+
+	function getURL(color){
+		return "https://api.spark.io/v1/devices/" + deviceID + "/" + color;
+	}
+
+	function print(){
+		console.log("Printed");
+	}
+
+</script>
+
+</head>
+<body>
+
+	<div class="grid-container">
+
+		<div class='red-led grid-item'>
+			<div class="round red off" id='red' onClick="toggleLED('red')" ></div>
+			<!-- <input type="button" onClick="switchOff('red')" value="OFF" class='red-button off-button'/> -->
+		</div>
+
+		<div class='blue-led grid-item'>
+			<div class="round blue off" id='blue' onClick="toggleLED('blue')" ></div>
+			<!-- <input type="button" onClick="switchOff('blue')" value="OFF" class='blue-button off-button'/> -->
+		</div>
+
+		<div class='green-led grid-item'>
+			<div class="round green off" id='green' onClick="toggleLED('green')" ></div>
+			<!-- <input type="button" onClick="switchOff('green')" value="OFF" class='green-button off-button'/> -->
+		</div>
+
+			<div class='yellow-led grid-item'>
+			<div class="round yellow off" id='yellow' onClick="toggleLED('yellow')" ></div>
+			<!-- <input type="button" onClick="switchOff('yellow')" value="OFF" class='yellow-button off-button'/> -->
+		</div>
+
+		<div class='white-led grid-item'>
+			<div class="round white off" id='white' onClick="toggleLED('white')" ></div>
+			<!-- <input type="button" onClick="switchOff('white')" value="OFF" class='white-button off-button'/> -->
+		</div>
+	</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
